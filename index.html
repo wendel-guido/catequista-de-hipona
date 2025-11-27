@@ -1,151 +1,306 @@
 <!DOCTYPE html>
-<html lang="pr-br" class="h-100">
-
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/index.js" defer></script>
-  <title>Catequista de Hipona</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catequista de Hipona | Fé e Razão</title>
+    
+    <!-- Tailwind CSS (Framework Mobile First) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1548625361-ec8595edc292?q=80&w=1955&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll; /* Scroll no mobile evita bugs visuais em alguns browsers */
+        }
+        @media (min-width: 768px) {
+            .hero-bg { background-attachment: fixed; } /* Parallax apenas no desktop */
+        }
+    </style>
 </head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
 
-<body class="d-flex flex-column h-100">
-  <!-- INICIO CABEÇALHO -->
-  <header>
-    <div class="p-5 bg-warning text-black text-center">
-      <h1>CATEQUISTA DE HIPONA</h1>
-      <p>A FÉ CATÓLICA DESCOMPLICADA!</p>
-    </div>
-    <!--INICIO DA BARRA DE NAVEGAÇÃO-->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="#" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
 
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="../">HOME</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">CATEQUESE</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="catequese/sumario-catequese.html">Introdução</a></li>
-                <li><a class="dropdown-item" href="construindo.html">A Profissão de Fé - O Credo</a></li>
-                <li><a class="dropdown-item" href="construindo.html">A Sagrada Liturgia - Os Sacramentos</a></li>
-                <li><a class="dropdown-item" href="construindo.html">A Vida em Cristo - Os Mandamentos</a></li>
-                <li><a class="dropdown-item" href="construindo.html">A Oração Cristã</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="construindo.html">HISTÓRIA DA IGREJA</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="construindo.html">APOLOGÉTICA</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="construindo.html">SOBRE</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="construindo.html">DOE AQUI</a>
-            </li>
-          </ul>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
+                            Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Apologética</a>
+                    <a href="#" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Doe Aqui
+                    </a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Mobile Menu (Otimizado) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Catequese</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Apologética</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="#" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
+                        Doe Aqui
+                    </a>
+                </div>
+            </div>
+        </div>
     </nav>
-  </header>
-  <!--INICIO DO CORPO DO ARTIGO-->
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <article>
-          <header class="mb-4">
-            <h1 class="fw-bolder mb-1">Seja Bem-Vindo à Nossa Jornada de Fé e Razão</h1> <!-- TITULO -->
-          </header>
-          <!--IMAGEM DO ARTIGO-->
-          <figure class="mb-4">
-            <img class="img-fluid rounded d-block mx-auto"" src= " imagem-index.png" alt="Retrato em pintura clássica de Santo Agostinho, Doutor da Igreja. 
-            É um homem mais velho, com barba e auréola, vestindo uma suntuosa capa dourada. 
-            Em sua mão direita, segura uma pena de escrever, e na esquerda, um coração vermelho em chamas. 
-            Seu olhar se dirige para o alto, com livros e uma estante ao fundo.">
-            <figcaption class="text-center text-muted small mt-1">Aurelius Augustinus - (Tagaste, 13 de novembro de
-              354-Hipona, 28 de agosto de 430)</figcaption>
-          </figure>
-          <section class="mb-5">
-            <!-- CITAÇÃO -->
-            <blockquote class="blockquote border-start border-4 border-secondary ps-3 fst-italic my-4 fs-5">
-              "Estai sempre prontos a dar a razão da vossa esperança a todo aquele que a pedir, mas com brandura e
-              respeito." (1 Pedro 3:15)
-            </blockquote>
-            <!-- ARTIGO -->
-            <p class="fs-5"> É com a inspiração desta bela passagem da Primeira Carta de São Pedro que damos as
-              boas-vindas a você.
-              Este versículo não é um chamado apenas para os grandes teólogos ou para o clero; é uma convocação a cada
-              um de nós,
-              católicos leigos, para que possamos conhecer a nossa fé tão profundamente a ponto de podermos partilhá-la
-              com clareza,
-              caridade e confiança. </p>
 
-            <p class="fs-5">Muitas vezes, o desejo de evangelizar e de defender a fé esbarra na dúvida: "Por onde
-              começar?". O oceano da doutrina católica
-              é vasto e profundo, e navegar por ele pode parecer uma tarefa intimidante. Foi pensando nisso que este
-              espaço nasceu. </p>
-
-            <p class="fs-5"> O objetivo do nosso website é simples e direto: servir como um farol, oferecendo artigos
-              que expliquem a fé católica de maneira
-              descomplicada. Queremos ser uma ponte entre a riqueza da Tradição da Igreja e o coração do católico que
-              busca aprender mais. Aqui, embarcaremos
-              juntos em uma jornada de formação através de três grandes pilares:
-            <p class="fs-5">
-
-            <p class="fs-5">
-            <ul class="fs-5">
-              <li> <b>Catequese:</b> Para entender aquilo em que cremos, celebrando os sacramentos, vivendo a moral
-                cristã e
-                aprofundando nossa vida de oração.</li>
-              <li><b>História da Igreja:</b> Para conhecer nossas raízes, caminhando com os santos e mártires que
-                construíram a
-                nossa fé ao longo de dois milênios.</li>
-              <li><b>Apologética:</b> Para aprender a "dar a razão da nossa esperança", respondendo às dúvidas comuns e
-                defendendo a verdade da Igreja com amor e lógica.</li>
-            </ul>
+    <!-- HERO SECTION -->
+    <header class="hero-bg min-h-screen flex items-center justify-center relative pt-20 md:pt-0">
+        <div class="text-center px-6 max-w-4xl mx-auto">
+            <span class="text-vatican-gold font-bold tracking-[0.2em] uppercase text-xs md:text-base animate-pulse">
+                Bem-vindo à Jornada
+            </span>
+            <h1 class="mt-6 text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white text-shadow leading-tight">
+                A Fé Católica <br/> <span class="italic text-vatican-gold">Descomplicada</span>
+            </h1>
+            <p class="mt-6 text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+                "A fé e a razão são como as duas asas pelas quais o espírito humano se eleva para a contemplação da verdade."
             </p>
-            <p class="fs-5">Nossa bússola será sempre a verdade revelada por Cristo e guardada pela Igreja. Por isso,
-              nossos artigos
-              terão como fontes primárias a Bíblia Sagrada, a Sagrada Tradição e o Catecismo da Igreja Católica,
-              frequentemente iluminados pela sabedoria atemporal de gigantes como Santo Agostinho, Santo Ambrósio e
-              Santo
-              Tomás de Aquino.</p>
-            <p class="fs-5">Cremos firmemente que a fé não teme a inteligência. Pelo contrário, a fé busca o intelecto
-              para ser mais bem
-              compreendida e amada. O Papa São João Paulo II, em sua encíclica Fides et Ratio (A Fé e a Razão),
-              ensina-nos
-              de forma magistral: <em>“A fé e a razão são como as duas asas pelas quais o espírito humano se eleva para
-                a
-                contemplação da verdade.”</em> Uma não anula a outra; elas se complementam. Uma fé sem razão pode cair
-              no
-              sentimentalismo, enquanto uma razão sem fé se fecha para os maiores mistérios da vida. Aqui, buscaremos
-              sempre voar com essas duas asas, mostrando que a fé católica é não apenas bela, mas também profundamente
-              razoável e coerente.</p>
-            <p class="fs-5">Este espaço é seu. Sinta-se em casa para ler, comentar, perguntar e, principalmente, para se
-              aprofundar no
-              amor a Cristo e à sua Igreja.</p>
-            <p class="fs-5">Seja muito bem-vindo! Desejamos a todos bons estudos e uma santa leitura.</p>
-          </section>
-        </article>
-      </div>
-    </div>
-  </main>
-  <!-- INICIO DO RODAPÉ -->
-  <footer class="footer mt-auto py-3 bg-dark text-white">
-    <div class="container text-center">
-      <span class="text-white">&copy; 2025 - Catequista de Hipona.
-        <br> Todos os direitos reservados.</span>
-    </div>
-  </footer>
-</body>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto px-4 sm:px-0">
+                <a href="#welcome" class="w-full sm:w-auto px-8 py-4 bg-vatican-gold text-white rounded-lg font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1 text-center">
+                    Começar a Leitura
+                </a>
+                <a href="#" class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-lg font-bold hover:bg-white hover:text-deep-blue transition text-center">
+                    Nossa Missão
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 md:bottom-10 animate-bounce hidden sm:block">
+            <i data-lucide="arrow-down" class="text-white h-8 w-8 opacity-70"></i>
+        </div>
+    </header>
 
+    <!-- OS TRÊS PILARES (CARDS) -->
+    <!-- py-12 no mobile, py-20 no desktop para melhor balanço -->
+    <section class="py-12 md:py-20 bg-white relative z-10 -mt-8 md:-mt-10 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-deep-blue">Nossos Pilares de Formação</h2>
+                <div class="h-1 w-16 md:w-20 bg-vatican-gold mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <!-- Card 1 -->
+                <div class="p-6 md:p-8 bg-paper rounded-xl hover:shadow-xl transition duration-300 border border-slate-100 group cursor-pointer">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-vatican-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-vatican-gold transition">
+                        <i data-lucide="book-open" class="text-vatican-gold h-6 w-6 md:h-7 md:w-7 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-deep-blue mb-2 md:mb-3">Catequese</h3>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                        Para entender aquilo em que cremos, celebrando os sacramentos e vivendo a moral cristã.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 md:p-8 bg-paper rounded-xl hover:shadow-xl transition duration-300 border border-slate-100 group cursor-pointer">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-vatican-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-vatican-gold transition">
+                        <i data-lucide="landmark" class="text-vatican-gold h-6 w-6 md:h-7 md:w-7 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-deep-blue mb-2 md:mb-3">História da Igreja</h3>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                        Conheça nossas raízes, caminhando com os santos e mártires que construíram a nossa fé.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 md:p-8 bg-paper rounded-xl hover:shadow-xl transition duration-300 border border-slate-100 group cursor-pointer">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-vatican-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-vatican-gold transition">
+                        <i data-lucide="shield-check" class="text-vatican-gold h-6 w-6 md:h-7 md:w-7 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-deep-blue mb-2 md:mb-3">Apologética</h3>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                        Aprenda a "dar a razão da vossa esperança", respondendo dúvidas com amor e lógica.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION DE CONTEÚDO (BEM VINDO) -->
+    <section id="welcome" class="py-12 md:py-20 bg-paper">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-10 md:gap-12">
+                
+                <!-- Imagem (Lado Esquerdo) -->
+                <!-- h-64 no mobile para não ocupar tela toda, h-[500px] no desktop -->
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute inset-0 bg-vatican-gold transform translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 rounded-lg"></div>
+                    <img src="santoagostinho-index.png" 
+                         alt="Imagem de Santo Agostinho de Hipona" 
+                         class="relative rounded-lg shadow-2xl w-full object-cover h-64 sm:h-80 md:h-[500px] grayscale hover:grayscale-0 transition duration-700">
+                    
+                    <!-- Citação flutuante escondida em telas muito pequenas para limpar o visual -->
+                    <div class="hidden sm:block absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white/90 backdrop-blur p-4 rounded-md shadow-lg max-w-xs border-l-4 border-vatican-gold">
+                        <p class="font-serif text-sm italic text-deep-blue">
+                            "Fizeste-nos para Ti, Senhor, e o nosso coração está inquieto enquanto não descansar em Ti."
+                        </p>
+                        <p class="text-xs text-gray-500 mt-2 font-bold">— Santo Agostinho</p>
+                    </div>
+                </div>
+
+                <!-- Texto (Lado Direito) -->
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-2xl md:text-4xl font-serif font-bold text-deep-blue mb-4 md:mb-6">
+                        Fé e Razão: <br>Uma Jornada de Verdade
+                    </h2>
+                    
+                    <div class="space-y-4 text-slate-700 leading-relaxed text-base md:text-lg">
+                        <p>
+                            É com inspiração na Primeira Carta de São Pedro que damos as boas-vindas. O chamado para 
+                            <span class="text-vatican-gold font-semibold">"dar a razão da vossa esperança"</span> 
+                            (1 Pedro 3:15) não é apenas para o clero, mas para cada um de nós.
+                        </p>
+                        <p>
+                            Muitas vezes, o desejo de evangelizar esbarra na dúvida: "Por onde começar?". O oceano da doutrina católica é vasto. Foi pensando nisso que este espaço nasceu: para servir como um farol.
+                        </p>
+                        
+                        <!-- Citação Mobile (Visível) -->
+                        <div class="bg-white p-5 border-l-4 border-vatican-gold shadow-sm my-6 rounded-r-md">
+                            <p class="italic text-slate-600 text-sm md:text-base">
+                                "Uma fé sem razão pode cair no sentimentalismo, enquanto uma razão sem fé se fecha para os maiores mistérios da vida."
+                            </p>
+                            <p class="text-xs md:text-sm font-bold text-slate-900 mt-2">— São João Paulo II, Fides et Ratio</p>
+                        </div>
+
+                        <p>
+                            Nossa bússola será a verdade revelada por Cristo, guardada pela Igreja, iluminada por gigantes como Santo Agostinho e Santo Tomás de Aquino. 
+                        </p>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="#" class="text-vatican-gold font-bold hover:text-deep-blue transition flex items-center gap-2 group text-base">
+                            Conheça nossa História <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 text-white">
+                        <i data-lucide="church" class="h-6 w-6 text-vatican-gold"></i>
+                        <span class="font-serif font-bold text-lg">Catequista de Hipona</span>
+                    </div>
+                    <p class="text-sm px-4 md:px-0">A fé católica descomplicada, unindo a profundidade da tradição com a clareza necessária para os dias de hoje.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Explorar</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Catequese</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">História da Igreja</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Apologética</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Sobre</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs">
+                &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Lógica do Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Efeito de Scroll na Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
 </html>
