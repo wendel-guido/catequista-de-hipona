@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Catequese | Catequista de Hipona</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
+
+    <!-- SEARCH MODAL OVERLAY (Igual à Home) -->
+    <div id="search-modal" class="fixed inset-0 z-[60] bg-deep-blue/90 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl transform transition-all scale-95 duration-300" id="search-content">
+            <div class="relative">
+                <input type="text" placeholder="O que você procura? (ex: Batismo, Santo Agostinho...)" 
+                       class="w-full bg-white/10 text-white placeholder-gray-400 border-2 border-white/20 rounded-full py-4 pl-8 pr-16 text-xl focus:outline-none focus:border-vatican-gold focus:bg-white/20 transition shadow-2xl">
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-vatican-gold transition p-2">
+                    <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                </button>
+            </div>
+            <p class="text-center text-gray-400 mt-4 text-sm">Pressione ESC para fechar</p>
+            <button id="close-search" class="absolute -top-16 right-0 text-white/50 hover:text-white transition">
+                <i data-lucide="x" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="../index.html" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
+                    <div class="relative group">
+                        <!-- Marcado como ativo (text-vatican-gold) pois estamos na seção Catequese -->
+                        <button class="flex items-center text-vatican-gold font-bold transition text-sm uppercase tracking-wide">
+                            Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="#" class="block px-4 py-3 text-sm font-bold text-vatican-gold bg-slate-50 border-b border-gray-100">Introdução</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100">O Credo</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100">Sacramentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100">Mandamentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
+                    
+                    <!-- Divisor -->
+                    <div class="h-6 w-px bg-slate-200 mx-2"></div>
+
+                    <!-- Botão de Busca -->
+                    <button onclick="toggleSearch()" class="text-slate-500 hover:text-vatican-gold transition p-2 rounded-full hover:bg-slate-100">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+
+                    <a href="#" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Doe Aqui
+                    </a>
+                </div>
+
+                <!-- Mobile Header Icons -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button onclick="toggleSearch()" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="search" class="h-6 w-6"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Atualizado com Acordeão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="../index.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                
+                <!-- Dropdown Mobile (Catequese) -->
+                <div>
+                    <button id="mobile-catequese-btn" class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-vatican-gold bg-slate-50 transition group">
+                        Catequese
+                        <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-vatican-gold transition-transform duration-300 rotate-180"></i>
+                    </button>
+                    <!-- Sub-menu container (Já aberto por padrão nesta página) -->
+                    <div id="mobile-catequese-menu" class="pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
+                        <a href="#" class="block px-4 py-3 text-sm font-bold text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Oração</a>
+                    </div>
+                </div>
+
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="#" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
+                        Doe Aqui
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER DA PÁGINA (Diferente da Home) -->
+    <header class="relative py-24 md:py-32 bg-deep-blue flex items-center justify-center overflow-hidden">
+        <!-- Background Decorativo -->
+        <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-vatican-gold/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <span class="text-vatican-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2 block animate-pulse">
+                Catequese Fundamental
+            </span>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight text-shadow">
+                Introdução à Fé
+            </h1>
+            <div class="h-1 w-16 bg-vatican-gold mx-auto mt-6 rounded"></div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 -mt-10 relative z-20">
+        
+        <article class="bg-white p-6 md:p-12 rounded-xl shadow-xl border border-slate-100">
+            
+            <!-- Imagem de Destaque -->
+            <figure class="mb-10 relative group">
+                <div class="absolute inset-0 bg-vatican-gold transform translate-x-2 translate-y-2 rounded-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <!-- Substituído por imagem placeholder de alta qualidade -->
+                <img class="relative z-10 rounded-lg w-full object-cover h-64 md:h-[400px] shadow-md" 
+                     src="introducao.jpg"
+                     alt="Bíblia aberta e Catecismo sobre mesa de madeira">
+                <figcaption class="text-center text-slate-400 text-xs mt-3 italic">
+                    Foto ilustrativa: Estudo da Palavra e da Doutrina
+                </figcaption>
+            </figure>
+
+            <!-- Texto do Artigo -->
+            <div class="prose prose-lg prose-slate max-w-none font-light leading-relaxed text-slate-700">
+                <p class="first-letter:text-5xl first-letter:font-serif first-letter:text-vatican-gold first-letter:float-left first-letter:mr-3 first-letter:mt-[-5px]">
+                    Amigos em Cristo, sejam muito bem-vindos!
+                </p>
+                <p>
+                    Como catequista, sei que no coração de todo católico arde uma chama, por vezes serena, por vezes inquieta, que nos impulsiona a perguntar: <span class="italic text-deep-blue font-medium">"Por que creio? No que exatamente eu creio? Qual é o fundamento sólido da minha esperança?"</span>. Essa busca pela verdade não é um sinal de dúvida, mas sim um sinal de uma fé viva que deseja crescer, amadurecer e, como dizia Santo Agostinho, encontrar o repouso em Deus.
+                </p>
+                
+                <div class="my-8 p-6 bg-paper border-l-4 border-vatican-gold rounded-r-lg">
+                    <p class="mb-0 italic text-slate-600 font-serif text-lg">
+                        "Muitas vezes, nossa fé pode parecer um conjunto de informações soltas. Mas a verdade é que a Doutrina Católica é como uma catedral majestosa e harmoniosa."
+                    </p>
+                </div>
+
+                <p>
+                    O objetivo desta série de artigos é oferecer a você um roteiro, um mapa seguro para explorar os alicerces desta nossa casa espiritual. Faremos uma jornada juntos, passo a passo, para entender como a voz de Deus chega até nós e como a Igreja, nossa Mãe, nos ensina a acolhê-la.
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-10 mb-6">Nossa Caminhada</h3>
+                
+                <p>Iniciaremos nossa caminhada falando sobre <strong>A Catequese</strong>, que é precisamente este caminho de educação e amadurecimento na fé. Veremos que catequizar não é apenas "dar aula", mas sim conduzir alguém a um encontro íntimo com Jesus Cristo.</p>
+
+                <p>Em seguida, mergulharemos no coração de nossa resposta a Deus: <strong>A Fé</strong>. O que ela é? É um sentimento, um salto no escuro? Veremos que a fé é um dom de Deus e um ato humano, uma adesão de toda a nossa pessoa - inteligência e vontade - ao Deus que se revela.</p>
+
+                <p>Mas como Deus se revela? Isso nos levará ao grandioso tema da <strong>Revelação</strong>. Descobriremos que não cremos em um Deus mudo e distante. Cremos no Deus da Aliança, que falou na história, que se mostrou aos homens e que, na plenitude dos tempos, nos deu Sua Palavra definitiva: Seu próprio Filho, Jesus.</p>
+
+                <p>Finalmente, para que esta jornada seja segura, precisamos saber onde encontrar essa Revelação de forma autêntica. Exploraremos as <strong>Fontes da Revelação</strong>, o tripé que sustenta com firmeza tudo o que cremos:</p>
+
+                <ul class="space-y-4 my-8 list-none pl-0">
+                    <li class="flex gap-4 items-start p-4 bg-slate-50 rounded-lg">
+                        <div class="bg-vatican-gold/10 p-2 rounded-full">
+                            <i data-lucide="book" class="text-vatican-gold h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue block mb-1">A Sagrada Escritura</strong>
+                            <span class="text-sm">A Palavra de Deus inspirada, registrada por escrito.</span>
+                        </div>
+                    </li>
+                    <li class="flex gap-4 items-start p-4 bg-slate-50 rounded-lg">
+                        <div class="bg-vatican-gold/10 p-2 rounded-full">
+                            <i data-lucide="users" class="text-vatican-gold h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue block mb-1">A Sagrada Tradição</strong>
+                            <span class="text-sm">A transmissão viva do Evangelho, feita de geração em geração na Igreja pelo poder do Espírito Santo.</span>
+                        </div>
+                    </li>
+                    <li class="flex gap-4 items-start p-4 bg-slate-50 rounded-lg">
+                        <div class="bg-vatican-gold/10 p-2 rounded-full">
+                            <i data-lucide="award" class="text-vatican-gold h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue block mb-1">O Sagrado Magistério</strong>
+                            <span class="text-sm">A autoridade do Papa e dos bispos em comunhão com ele, que têm a missão de guardar, interpretar e ensinar autenticamente a Palavra de Deus.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <p class="mb-8">
+                    Este é o nosso roteiro. Uma jornada fascinante da nossa resposta (a Fé) ao chamado de Deus (a Revelação), guiados pela mão segura da Igreja.
+                </p>
+                
+                <p class="font-medium text-deep-blue text-center text-lg italic font-serif">
+                    Que o Espírito Santo ilumine nossa mente e aqueça nosso coração nesta caminhada. Vamos começar!
+                </p>
+            </div>
+
+            <!-- SUMÁRIO (Estilo Card Moderno) -->
+            <div class="mt-16 bg-paper rounded-xl p-6 md:p-8 border border-slate-200 shadow-inner">
+                <div class="flex items-center gap-3 mb-6 border-b border-slate-200 pb-4">
+                    <div class="bg-deep-blue text-white p-2 rounded-lg shadow-lg">
+                        <i data-lucide="list-video" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl md:text-2xl font-serif font-bold text-deep-blue">Sumário do Estudo</h4>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider">Próximos passos</p>
+                    </div>
+                </div>
+                
+                <nav class="space-y-3">
+                    <a href="introducao/a-catequese.html" class="flex items-center justify-between p-4 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow-md hover:border-vatican-gold/50 transition group">
+                        <span class="font-medium text-slate-700 group-hover:text-deep-blue">1. A Catequese</span>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-vatican-gold transition h-5 w-5"></i>
+                    </a>
+                    
+                    <a href="introducao/a-fe.html" class="flex items-center justify-between p-4 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow-md hover:border-vatican-gold/50 transition group">
+                        <span class="font-medium text-slate-700 group-hover:text-deep-blue">2. A Fé</span>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-vatican-gold transition h-5 w-5"></i>
+                    </a>
+                    
+                    <a href="../construindo.html" class="flex items-center justify-between p-4 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow-md hover:border-vatican-gold/50 transition group">
+                        <span class="font-medium text-slate-700 group-hover:text-deep-blue">3. A Revelação</span>
+                        <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-vatican-gold transition h-5 w-5"></i>
+                    </a>
+
+                    <!-- Sub-itens com indentação visual -->
+                    <div class="pl-4 border-l-2 border-slate-200 ml-4 space-y-2 mt-4">
+                        <div class="p-2 text-vatican-gold font-bold text-xs uppercase tracking-wider">
+                            4. Fontes da Revelação
+                        </div>
+                        
+                        <a href="../construindo.html" class="flex items-center gap-3 p-3 rounded hover:bg-slate-100 text-slate-600 hover:text-vatican-gold transition text-sm">
+                            <i data-lucide="corner-down-right" class="h-4 w-4 text-slate-300"></i> 4.1 A Sagrada Escritura
+                        </a>
+                        <a href="../construindo.html" class="flex items-center gap-3 p-3 rounded hover:bg-slate-100 text-slate-600 hover:text-vatican-gold transition text-sm">
+                            <i data-lucide="corner-down-right" class="h-4 w-4 text-slate-300"></i> 4.2 A Tradição
+                        </a>
+                        <a href="../construindo.html" class="flex items-center gap-3 p-3 rounded hover:bg-slate-100 text-slate-600 hover:text-vatican-gold transition text-sm">
+                            <i data-lucide="corner-down-right" class="h-4 w-4 text-slate-300"></i> 4.3 O Magistério
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 text-white">
+                        <i data-lucide="church" class="h-6 w-6 text-vatican-gold"></i>
+                        <span class="font-serif font-bold text-lg">Catequista de Hipona</span>
+                    </div>
+                    <p class="text-sm px-4 md:px-0">A fé católica descomplicada, unindo a profundidade da tradição com a clareza necessária para os dias de hoje.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Explorar</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Catequese</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">História da Igreja</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Artigos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Sobre</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs">
+                &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+        
+        // Menu Mobile (Botão Hambúrguer)
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Submenu Mobile (Catequese)
+        const mobileCatequeseBtn = document.getElementById('mobile-catequese-btn');
+        const mobileCatequeseMenu = document.getElementById('mobile-catequese-menu');
+        const mobileCatequeseIcon = document.getElementById('mobile-catequese-icon');
+
+        if(mobileCatequeseBtn) {
+            mobileCatequeseBtn.addEventListener('click', () => {
+                mobileCatequeseMenu.classList.toggle('hidden');
+                mobileCatequeseIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        // Efeito de Scroll na Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Lógica da Busca (Modal)
+        const searchModal = document.getElementById('search-modal');
+        const searchContent = document.getElementById('search-content');
+        const closeSearchBtn = document.getElementById('close-search');
+
+        function toggleSearch() {
+            if (searchModal.classList.contains('hidden')) {
+                searchModal.classList.remove('hidden');
+                setTimeout(() => {
+                    searchModal.classList.remove('opacity-0');
+                    searchContent.classList.remove('scale-95');
+                    searchContent.classList.add('scale-100');
+                    searchModal.querySelector('input').focus();
+                }, 10);
+            } else {
+                searchModal.classList.add('opacity-0');
+                searchContent.classList.remove('scale-100');
+                searchContent.classList.add('scale-95');
+                setTimeout(() => {
+                    searchModal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        if(closeSearchBtn) closeSearchBtn.addEventListener('click', toggleSearch);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+                toggleSearch();
+            }
+        });
+    </script>
+</body>
+</html>
