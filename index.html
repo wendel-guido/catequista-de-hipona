@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catequista de Hipona | Fé e Razão</title>
     
-    <!-- Tailwind CSS (Framework Mobile First) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fontes Google -->
@@ -50,23 +50,6 @@
 </head>
 <body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
 
-    <!-- SEARCH MODAL OVERLAY -->
-    <div id="search-modal" class="fixed inset-0 z-[60] bg-deep-blue/90 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
-        <div class="w-full max-w-2xl transform transition-all scale-95 duration-300" id="search-content">
-            <div class="relative">
-                <input type="text" placeholder="O que você procura? (ex: Batismo, Santo Agostinho...)" 
-                       class="w-full bg-white/10 text-white placeholder-gray-400 border-2 border-white/20 rounded-full py-4 pl-8 pr-16 text-xl focus:outline-none focus:border-vatican-gold focus:bg-white/20 transition shadow-2xl">
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-vatican-gold transition p-2">
-                    <i data-lucide="arrow-right" class="w-8 h-8"></i>
-                </button>
-            </div>
-            <p class="text-center text-gray-400 mt-4 text-sm">Pressione ESC para fechar</p>
-            <button id="close-search" class="absolute -top-16 right-0 text-white/50 hover:text-white transition">
-                <i data-lucide="x" class="w-10 h-10"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- NAV BAR -->
     <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +63,7 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-6 items-center">
+                <div class="hidden md:flex space-x-8 items-center">
                     <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
                     
                     <div class="relative group">
@@ -88,9 +71,7 @@
                             Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
                         </button>
                         <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
-                            <!-- LINK CORRIGIDO AQUI -->
                             <a href="catequese/introducao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
-                            
                             <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
                             <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
                             <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
@@ -101,12 +82,6 @@
                     <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
                     <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
                     
-                    <div class="h-6 w-px bg-slate-200 mx-2"></div>
-
-                    <button onclick="toggleSearch()" class="text-slate-500 hover:text-vatican-gold transition p-2 rounded-full hover:bg-slate-100">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                    </button>
-
                     <a href="#" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                         Doe Aqui
                     </a>
@@ -114,9 +89,6 @@
 
                 <!-- Mobile Header Icons -->
                 <div class="md:hidden flex items-center gap-2">
-                    <button onclick="toggleSearch()" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
-                        <i data-lucide="search" class="h-6 w-6"></i>
-                    </button>
                     <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
                         <i data-lucide="menu" class="h-7 w-7"></i>
                     </button>
@@ -135,9 +107,7 @@
                         <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
                     </button>
                     <div id="mobile-catequese-menu" class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
-                        <!-- LINK CORRIGIDO AQUI (MOBILE) -->
                         <a href="catequese/introducao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
-                        
                         <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
                         <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
                         <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
@@ -192,7 +162,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- CARD CATEQUESE TRANSFORMADO EM LINK CORRIGIDO -->
+                <!-- CARD CATEQUESE TRANSFORMADO EM LINK -->
                 <a href="catequese/introducao.html" class="block p-6 md:p-8 bg-paper rounded-xl hover:shadow-xl transition duration-300 border border-slate-100 group cursor-pointer">
                     <div class="w-12 h-12 md:w-14 md:h-14 bg-vatican-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-vatican-gold transition">
                         <i data-lucide="book-open" class="text-vatican-gold h-6 w-6 md:h-7 md:w-7 group-hover:text-white transition"></i>
@@ -234,8 +204,8 @@
             <div class="flex flex-col lg:flex-row items-center gap-10 md:gap-12">
                 <div class="w-full lg:w-1/2 relative">
                     <div class="absolute inset-0 bg-vatican-gold transform translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 rounded-lg"></div>
-                    <img src="santoagostinho-index.png" 
-                         alt="Santo Agostinho pensativo" 
+                    <img src="santoagostinho-index.png"
+                         alt="Imagem de Santo Agostinho" 
                          class="relative rounded-lg shadow-2xl w-full object-cover h-64 sm:h-80 md:h-[500px] grayscale hover:grayscale-0 transition duration-700">
                     
                     <div class="hidden sm:block absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white/90 backdrop-blur p-4 rounded-md shadow-lg max-w-xs border-l-4 border-vatican-gold">
@@ -294,7 +264,7 @@
                 <div class="w-full md:w-1/2 flex justify-center md:justify-end">
                     <div class="relative group">
                         <div class="absolute inset-0 bg-vatican-gold blur-2xl opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                        <img src="livro-em-breve.jpg" 
+                        <img src="livro-em-breve.jpg"
                              alt="Capa do Livro Catequese de Hipona" 
                              class="relative w-64 md:w-80 rounded shadow-2xl transform md:-rotate-3 hover:rotate-0 transition duration-500 border-r-4 border-b-4 border-black/20">
                         
@@ -378,45 +348,8 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
+        if(btn) btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
-        });
-
-        // Lógica da Busca (Modal)
-        const searchModal = document.getElementById('search-modal');
-        const searchContent = document.getElementById('search-content');
-        const closeSearchBtn = document.getElementById('close-search');
-
-        function toggleSearch() {
-            if (searchModal.classList.contains('hidden')) {
-                // Abrir
-                searchModal.classList.remove('hidden');
-                // Pequeno delay para a animação de opacidade funcionar
-                setTimeout(() => {
-                    searchModal.classList.remove('opacity-0');
-                    searchContent.classList.remove('scale-95');
-                    searchContent.classList.add('scale-100');
-                    // Focar no input
-                    searchModal.querySelector('input').focus();
-                }, 10);
-            } else {
-                // Fechar
-                searchModal.classList.add('opacity-0');
-                searchContent.classList.remove('scale-100');
-                searchContent.classList.add('scale-95');
-                setTimeout(() => {
-                    searchModal.classList.add('hidden');
-                }, 300); // Esperar a transição terminar
-            }
-        }
-
-        closeSearchBtn.addEventListener('click', toggleSearch);
-
-        // Fechar com ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
-                toggleSearch();
-            }
         });
 
         // Lógica do Submenu Mobile (Catequese)
@@ -427,7 +360,7 @@
         if(mobileCatequeseBtn) {
             mobileCatequeseBtn.addEventListener('click', () => {
                 mobileCatequeseMenu.classList.toggle('hidden');
-                mobileCatequeseIcon.classList.toggle('rotate-180'); // Gira a setinha
+                mobileCatequeseIcon.classList.toggle('rotate-180');
             });
         }
 
