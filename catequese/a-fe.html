@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Fé | Catequista de Hipona</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="../index.html" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="../index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
+                            Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="introducao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
+                    
+                    <a href="#" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Doe Aqui
+                    </a>
+                </div>
+
+                <!-- Mobile Header Icons -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="../index.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                
+                <div>
+                    <button id="mobile-catequese-btn" class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition group">
+                        Catequese
+                        <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-catequese-menu" class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
+                        <a href="introducao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Oração</a>
+                    </div>
+                </div>
+
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="#" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
+                        Doe Aqui
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER INTERNO -->
+    <header class="relative py-24 md:py-32 bg-deep-blue flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-vatican-gold/20 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <!-- Breadcrumb visual -->
+            <div class="flex items-center justify-center gap-2 text-xs md:text-sm text-vatican-gold font-bold tracking-widest uppercase mb-4 animate-fade-in">
+                <a href="introducao.html" class="hover:underline opacity-70 hover:opacity-100">Introdução</a>
+                <span>/</span>
+                <span>Capítulo 2</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight text-shadow">
+                A Fé
+            </h1>
+            <p class="text-gray-300 text-lg mt-4 font-light italic">"A certeza a respeito do que não se vê"</p>
+            <div class="h-1 w-16 bg-vatican-gold mx-auto mt-6 rounded"></div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 -mt-10 relative z-20">
+        <article class="bg-white p-6 md:p-12 rounded-xl shadow-xl border border-slate-100">
+            
+            <!-- Imagem de Destaque -->
+            <figure class="mb-10 relative group">
+                <div class="absolute inset-0 bg-vatican-gold transform translate-x-2 translate-y-2 rounded-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <img class="relative z-10 rounded-lg w-full object-cover h-64 md:h-[450px] shadow-md grayscale-[20%] group-hover:grayscale-0 transition duration-700" 
+                     src="a-fe.jpg"
+                     alt="O Sacrifício de Isaac, Caravaggio">
+                <figcaption class="text-center text-slate-400 text-xs mt-3 italic font-serif">
+                    "O Sacrifício de Isaac" (1603), Caravaggio — Abraão, nosso pai na fé.
+                </figcaption>
+            </figure>
+
+            <!-- Texto do Artigo -->
+            <div class="prose prose-lg prose-slate max-w-none font-light leading-relaxed text-slate-700">
+                
+                <!-- Citação de Destaque -->
+                <blockquote class="not-italic my-8 pl-6 border-l-4 border-vatican-gold bg-paper py-4 pr-4 rounded-r-lg shadow-sm">
+                    <p class="font-serif text-xl md:text-2xl text-deep-blue italic mb-2">
+                        "A fé é o fundamento da esperança, é uma certeza a respeito do que não se vê."
+                    </p>
+                    <cite class="text-sm font-bold text-vatican-gold uppercase tracking-wide not-italic">— Hebreus 11, 1</cite>
+                </blockquote>
+
+                <p>
+                    <span class="text-vatican-gold font-bold text-xl block mb-2">Amigos em Cristo, a paz!</span>
+                    Como estudante de Engenharia de Software, costumo lidar com sistemas lógicos onde cada entrada (input) deve gerar uma saída (output) previsível. Se Deus é o <em>Logos</em> (a Razão Suprema), a nossa relação com Ele não poderia ser irracional.
+                </p>
+                <p>
+                    No artigo anterior, iniciamos nossa caminhada falando sobre <strong>A Catequese</strong>, esse "eco" da Palavra que nos introduz no mistério de Cristo. Agora, diante desse convite que a Igreja nos faz, precisamos dar uma resposta pessoal. Essa resposta tem um nome: <strong class="text-deep-blue">Fé</strong>.
+                </p>
+                <p>
+                    Infelizmente, o mundo moderno reduziu a fé a um "sentimento religioso", uma emoção passageira ou, pior, um "salto no escuro" onde desligamos o cérebro para aceitar o impossível. Isso não é a fé católica.
+                </p>
+                <p>
+                    Neste artigo, vamos mergulhar na definição dogmática da fé e entender, com a ajuda de São Tomás de Aquino e Santo Agostinho, como ela opera em nossa inteligência.
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    1. O Que é a Fé? (A Definição Dogmática)
+                </h3>
+
+                <p>A fé não é uma "aposta". O Catecismo da Igreja Católica (CIC) é cirúrgico ao defini-la:</p>
+
+                <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-slate-300 my-6 italic text-slate-600">
+                    "Pela fé, o homem submete completamente a sua inteligência e a sua vontade a Deus. Com todo o seu ser, o homem dá o seu assentimento a Deus que revela." (CIC, n. 143)
+                </div>
+
+                <p>
+                    Note as palavras usadas: <strong>inteligência</strong> e <strong>vontade</strong>. A fé é um ato de conhecimento. Não é crer em "alguma coisa" abstrata, mas primordialmente crer em "Alguém". É uma adesão pessoal a Deus e, simultaneamente, um assentimento livre a toda a verdade que Ele revelou.
+                </p>
+                <p>
+                    A Escritura chama essa postura de "a obediência da fé" (Rm 1, 5). Obedecer (<em>ob-audire</em>) significa "ouvir com profunda atenção e submissão". Temos dois modelos perfeitos disso na história da Salvação:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 marker:text-vatican-gold">
+                    <li><strong>Abraão:</strong> Que confiou na promessa do impossível, saindo de sua terra sem saber para onde ia.</li>
+                    <li><strong>Maria Santíssima:</strong> Que, com seu <em>fiat</em> ("Faça-se"), ofereceu a Deus a resposta perfeita, acolhendo o Verbo primeiro em seu coração e depois em seu ventre.</li>
+                </ul>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    2. A "Engenharia" do Ato de Fé
+                </h3>
+                <span class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-4 block">Segundo São Tomás de Aquino</span>
+
+                <p>
+                    Mas como funciona esse ato de crer na nossa mente? É aqui que a teologia se torna fascinante.
+                </p>
+                <p>
+                    São Tomás de Aquino, o Doutor Angélico, explica na <em>Suma Teológica</em> (II-II, q. 2, a. 9) que a fé é um ato híbrido e complexo. Normalmente, nossa inteligência só aceita aquilo que ela vê claramente (como 2+2=4). Porém, as verdades de Deus (como a Trindade ou a Presença Real na Eucaristia) não são evidentes aos olhos físicos nem à pura razão natural.
+                </p>
+                <p>
+                    Então, o que nos faz aceitá-las? São Tomás explica: já que a inteligência não "vê" por completo, ela precisa de um empurrão. Quem dá esse empurrão é a <strong>Vontade</strong>, movida pela <strong>Graça</strong>. Eu escolho crer porque confio na autoridade de Deus que não mente. Portanto:
+                </p>
+                <div class="bg-deep-blue text-white p-6 rounded-lg my-6 shadow-lg">
+                    <p class="font-serif italic text-lg m-0 text-center">
+                        "Crer é um ato do entendimento que adere à verdade divina, por império da vontade movida pela graça de Deus."
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    3. Fé e Razão: O Princípio de Santo Agostinho
+                </h3>
+
+                <p>
+                    Sendo a fé um ato da inteligência, ela não pode ser inimiga da razão. Pelo contrário, elas são as "duas asas" que nos elevam à verdade.
+                </p>
+                <p>
+                    Santo Agostinho, nosso patrono, combatia a ideia de uma fé cega. Ele nos deixou o célebre lema: <em>"Crede, ut intelligas"</em> (Crê para que possas compreender) e <em>"Intellige, ut credas"</em> (Compreende para que possas crer).
+                </p>
+                <p>
+                    A fé não anula o pensamento; ela o expande. É como um <strong>telescópio</strong>: o olho humano (razão) tem um limite, mas com a ajuda da lente (fé), ele consegue enxergar verdades que estão muito além, sem deixar de ser olho.
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    4. As Características Essenciais da Fé
+                </h3>
+
+                <p>Para finalizar, precisamos ter clareza de que a fé católica possui características inegociáveis:</p>
+
+                <ul class="space-y-4 my-8 list-none pl-0">
+                    <li class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-vatican-gold/30 transition shadow-sm flex gap-4">
+                        <div class="mt-1 bg-vatican-gold/10 p-2 rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0 text-vatican-gold">
+                            <i data-lucide="gift" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue text-lg block mb-1 font-serif">É um Dom (Graça)</strong>
+                            <p class="text-sm m-0 text-slate-600">Ninguém "fabrica" a fé pelo próprio esforço. Ela é uma virtude teologal infundida por Deus no Batismo. Precisamos dos "auxílios internos do Espírito Santo" para começar a crer.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-vatican-gold/30 transition shadow-sm flex gap-4">
+                        <div class="mt-1 bg-vatican-gold/10 p-2 rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0 text-vatican-gold">
+                            <i data-lucide="user-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue text-lg block mb-1 font-serif">É um Ato Humano (Liberdade)</strong>
+                            <p class="text-sm m-0 text-slate-600">A graça não nos força. Deus não quer robôs programados para adorá-Lo, mas filhos que O amam livremente.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-vatican-gold/30 transition shadow-sm flex gap-4">
+                        <div class="mt-1 bg-vatican-gold/10 p-2 rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0 text-vatican-gold">
+                            <i data-lucide="sun" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-deep-blue text-lg block mb-1 font-serif">É o Início da Vida Eterna</strong>
+                            <p class="text-sm m-0 text-slate-600">Santo Agostinho dizia que "a fé é acreditar no que não vemos; e a recompensa da fé é ver o que acreditamos". Ter fé é já possuir, em semente, a alegria do Céu.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <hr class="my-8 border-slate-200">
+
+                <p class="text-lg font-medium text-slate-700 mt-4 leading-relaxed">
+                    Portanto, a fé que professamos não é um sentimento instável. É uma certeza sólida, um alicerce sobre o qual podemos construir toda a nossa vida.
+                </p>
+                <p class="text-slate-700">
+                    Mas, para crermos, precisamos que Deus se mostre a nós. Como Ele fez isso? É um Deus mudo ou um Deus que fala? É exatamente isso que veremos no nosso próximo artigo, sobre <strong>A Revelação</strong>.
+                </p>
+                <p class="font-bold text-vatican-gold mt-4">Até lá!</p>
+            </div>
+
+            <!-- NAVEGAÇÃO ENTRE ARTIGOS -->
+            <div class="mt-16 border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between gap-4">
+                <a href="a-catequese.html" class="group flex items-center gap-3 text-slate-500 hover:text-vatican-gold transition text-right md:text-left">
+                    <div class="p-2 rounded-full bg-slate-100 group-hover:bg-vatican-gold/10 transition">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider font-bold opacity-70">Anterior</span>
+                        <span class="font-serif font-bold text-lg">1. A Catequese</span>
+                    </div>
+                </a>
+
+                <a href="../construindo.html" class="group flex items-center gap-3 text-slate-500 hover:text-vatican-gold transition justify-end text-left md:text-right">
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider font-bold opacity-70">Próximo</span>
+                        <span class="font-serif font-bold text-lg">3. A Revelação</span>
+                    </div>
+                    <div class="p-2 rounded-full bg-slate-100 group-hover:bg-vatican-gold/10 transition">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </div>
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 text-white">
+                        <i data-lucide="church" class="h-6 w-6 text-vatican-gold"></i>
+                        <span class="font-serif font-bold text-lg">Catequista de Hipona</span>
+                    </div>
+                    <p class="text-sm px-4 md:px-0">A fé católica descomplicada, unindo a profundidade da tradição com a clareza necessária para os dias de hoje.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Explorar</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Catequese</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">História da Igreja</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Artigos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-vatican-gold transition">Sobre</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-vatican-gold transition">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs">
+                &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+        
+        // Menu Mobile (Botão Hambúrguer)
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Submenu Mobile (Catequese)
+        const mobileCatequeseBtn = document.getElementById('mobile-catequese-btn');
+        const mobileCatequeseMenu = document.getElementById('mobile-catequese-menu');
+        const mobileCatequeseIcon = document.getElementById('mobile-catequese-icon');
+
+        if(mobileCatequeseBtn) {
+            mobileCatequeseBtn.addEventListener('click', () => {
+                mobileCatequeseMenu.classList.toggle('hidden');
+                mobileCatequeseIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        // Efeito de Scroll na Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
