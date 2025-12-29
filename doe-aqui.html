@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoie a Missão | Catequista de Hipona</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="index.html" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
+                            Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="catequese/introducao/introducao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
+                            <a href="catequese/credo/credo.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="#" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
+                    
+                    <!-- Botão Ativo -->
+                    <a href="doe-aqui.html" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold shadow-md transform translate-y-0 cursor-default">
+                        Doe Aqui
+                    </a>
+                </div>
+
+                <!-- Mobile Header Icons -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="index.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                
+                <div>
+                    <button id="mobile-catequese-btn" class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition group">
+                        Catequese
+                        <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-catequese-menu" class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
+                        <a href="catequese/introducao/introducao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
+                        <a href="catequese/credo/credo.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
+                        <a href="#" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
+                    </div>
+                </div>
+
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="#" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="doe-aqui.html" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold shadow-sm">
+                        Doe Aqui
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER DA PÁGINA -->
+    <header class="relative py-20 bg-deep-blue flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-vatican-gold/20 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <span class="text-vatican-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2 block animate-pulse">
+                Ajude nossa Missão
+            </span>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight">
+                Seja um Benfeitor
+            </h1>
+            <p class="text-gray-300 text-lg mt-4 font-light italic">"A Verdade deve ser acessível a todos."</p>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 -mt-10 relative z-20">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            
+            <!-- Lado Esquerdo: A Carta -->
+            <div class="lg:col-span-2">
+                <article class="bg-white p-8 md:p-12 rounded-xl shadow-xl border border-slate-100">
+                    
+                    <div class="flex items-center gap-4 mb-8">
+                        <!-- Avatar placeholder -->
+                        <div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden border-2 border-vatican-gold">
+                            <img src="https://ui-avatars.com/api/?name=Wendel+Guido&background=C5A059&color=fff" alt="Wendel Guido" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-serif font-bold text-deep-blue">Olá! Eu sou o Wendel Guido.</h2>
+                            <p class="text-sm text-slate-500">Fundador do Catequista de Hipona</p>
+                        </div>
+                    </div>
+
+                    <div class="prose prose-lg prose-slate max-w-none font-light leading-relaxed text-slate-700">
+                        <p>
+                            Sou católico e estudante de Engenharia de Software. Este projeto nasceu da união das minhas duas grandes paixões: a Teologia e a Informática. Acredito que a tecnologia deve ser um instrumento a serviço da Verdade, e foi com esse propósito que desenvolvi e mantenho o <strong>Catequista de Hipona</strong>.
+                        </p>
+                        
+                        <h3 class="text-xl font-bold text-deep-blue mt-8 mb-4">O que é este projeto?</h3>
+                        <p>
+                            É um projeto de evangelização digital onde busco explicar a riqueza da fé católica de maneira descomplicada, mas sem perder a profundidade necessária. Como eu mesmo desenvolvi o site do zero, busco oferecer uma experiência de leitura limpa e focada no que realmente importa: a doutrina, a vida dos santos e a formação cristã.
+                        </p>
+
+                        <h3 class="text-xl font-bold text-deep-blue mt-8 mb-4">Por que apoiar?</h3>
+                        <p>
+                            Manter um site independente exige dedicação e recursos. O apoio financeiro me ajuda a:
+                        </p>
+                        <ul class="list-none space-y-3 pl-0 my-6">
+                            <li class="flex gap-3">
+                                <i data-lucide="check-circle" class="text-vatican-gold w-6 h-6 flex-shrink-0"></i>
+                                <span>Custear os servidores e ferramentas de desenvolvimento do site.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check-circle" class="text-vatican-gold w-6 h-6 flex-shrink-0"></i>
+                                <span>Dedicar mais tempo à pesquisa teológica e produção de artigos aprofundados.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check-circle" class="text-vatican-gold w-6 h-6 flex-shrink-0"></i>
+                                <span>Garantir que o conteúdo continue sendo gratuito e acessível para todos que buscam formação.</span>
+                            </li>
+                        </ul>
+
+                        <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-vatican-gold mt-8 italic">
+                            "Evangelizar no continente digital é um desafio, mas com a sua ajuda, podemos levar a sã doutrina a cada vez mais pessoas. Ao apoiar o Catequista de Hipona, você não está apenas fazendo uma doação, mas tornando-se um co-evangelizador nesta missão."
+                        </div>
+
+                        <p class="mt-6 font-medium text-deep-blue">
+                            Conto com suas orações e, se possível, com seu apoio financeiro.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Lado Direito: Área de Doação (Sticky) -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-6">
+                    
+                    <!-- Card Apoia.se -->
+                    <div class="bg-deep-blue text-white rounded-xl shadow-2xl overflow-hidden relative group">
+                        <!-- Elemento decorativo -->
+                        <div class="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-vatican-gold/20 rounded-full blur-2xl group-hover:bg-vatican-gold/30 transition"></div>
+                        
+                        <div class="p-8 text-center relative z-10">
+                            <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="heart" class="text-vatican-gold w-8 h-8 fill-current"></i>
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold mb-2">Seja um Apoiador</h3>
+                            <p class="text-gray-300 text-sm mb-6">Contribua mensalmente e ajude a manter o projeto vivo.</p>
+                            
+                            <a href="https://apoia.se/catequistadehipona" target="_blank" class="block w-full py-4 bg-vatican-gold hover:bg-yellow-600 text-white font-bold rounded-lg transition transform hover:-translate-y-1 shadow-lg">
+                                Apoiar no Apoia.se
+                            </a>
+                            <p class="text-xs text-gray-400 mt-4">Seguro, rápido e cancelável a qualquer momento.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card PIX -->
+                    <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-8 text-center">
+                        <div class="flex items-center justify-center gap-2 mb-4 text-deep-blue font-bold">
+                            <i data-lucide="qr-code" class="w-6 h-6 text-vatican-gold"></i>
+                            <span>Doação via PIX</span>
+                        </div>
+                        
+                        <!-- Placeholder do QR Code -->
+                        <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg p-4 mb-4 flex items-center justify-center h-64 w-full mx-auto relative group cursor-pointer overflow-hidden">
+                            <!-- Imagem Placeholder -->
+                            <img src="qrcode-doacao.jpg" alt="QR Code Pix" class="w-full h-full object-contain opacity-100 group-hover:opacity-100 transition">
+                        </div>
+
+                        <p class="text-sm text-slate-600 mb-2">Ou use a chave Pix (Copia e Cola):</p>
+                        <div class="flex items-center justify-center gap-2 bg-slate-50 p-2 rounded border border-slate-200 w-full overflow-hidden">
+                            <!-- Chave Pix atualizada -->
+                            <code class="text-deep-blue font-mono font-bold text-xs md:text-sm whitespace-nowrap overflow-x-auto w-full px-2" id="pixKey">
+                                00020126580014br.gov.bcb.pix013656acad18-9e1d-4a1a-965c-2df44f730dd45204000053039865802BR5918WENDELGUIDOALBERTI6009Sao Paulo610901227-20062230519daqr665941006821458630403C0
+                            </code>
+                            <button class="text-slate-400 hover:text-vatican-gold bg-white p-2 border-l border-slate-200" onclick="copyPix()">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-xs">
+                &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+        
+        // Menu Mobile (Botão Hambúrguer)
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Submenu Mobile (Catequese)
+        const mobileCatequeseBtn = document.getElementById('mobile-catequese-btn');
+        const mobileCatequeseMenu = document.getElementById('mobile-catequese-menu');
+        const mobileCatequeseIcon = document.getElementById('mobile-catequese-icon');
+
+        if(mobileCatequeseBtn) {
+            mobileCatequeseBtn.addEventListener('click', () => {
+                mobileCatequeseMenu.classList.toggle('hidden');
+                mobileCatequeseIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        // Função para Copiar Pix
+        function copyPix() {
+            const pixKey = document.getElementById('pixKey').innerText;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                alert('Chave Pix copiada com sucesso!');
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+            });
+        }
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) navbar.classList.add('shadow-md');
+            else navbar.classList.remove('shadow-md');
+        });
+    </script>
+</body>
+</html>
