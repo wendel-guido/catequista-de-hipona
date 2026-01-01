@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lendo Artigo | Catequista de Hipona</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- ESTILOS ESPECÍFICOS PARA O CONTEÚDO DO WORDPRESS -->
+    <style>
+        /* O WordPress entrega HTML puro (h2, p, ul, img). 
+           Precisamos estilizar essas tags para ficarem bonitas dentro do nosso site. */
+        
+        .wp-content h1, .wp-content h2, .wp-content h3, .wp-content h4 {
+            font-family: 'Playfair Display', serif;
+            color: #0f172a; /* deep-blue */
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .wp-content h2 { 
+            font-size: 1.8rem; 
+            border-bottom: 2px solid #C5A059; /* vatican-gold */
+            padding-bottom: 0.5rem; 
+            display: inline-block;
+        }
+        
+        .wp-content h3 { 
+            font-size: 1.5rem; 
+            font-weight: 600; 
+        }
+
+        .wp-content p { 
+            margin-bottom: 1.5rem; 
+            line-height: 1.8; 
+            color: #334155; /* slate-700 */
+            font-size: 1.125rem; /* text-lg */
+        }
+
+        /* Listas */
+        .wp-content ul, .wp-content ol { 
+            margin-bottom: 1.5rem; 
+            padding-left: 2rem; 
+            color: #334155;
+        }
+        .wp-content ul { list-style-type: disc; }
+        .wp-content ol { list-style-type: decimal; }
+        .wp-content li { margin-bottom: 0.5rem; }
+
+        /* Citações (Blockquotes) */
+        .wp-content blockquote {
+            border-left: 4px solid #C5A059;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            background-color: #f8fafc; /* slate-50 */
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic;
+            color: #475569;
+        }
+
+        /* Imagens no meio do texto */
+        .wp-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 2rem auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+        
+        .wp-content figure { margin: 2rem 0; }
+        .wp-content figcaption { 
+            text-align: center; 
+            font-size: 0.875rem; 
+            color: #64748b; 
+            margin-top: 0.5rem; 
+            font-style: italic; 
+        }
+
+        /* Links no texto */
+        .wp-content a { 
+            color: #C5A059; 
+            text-decoration: underline; 
+            font-weight: 600; 
+            transition: color 0.2s; 
+        }
+        .wp-content a:hover { color: #0f172a; }
+    </style>
+</head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white flex flex-col min-h-screen">
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="index.html" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    <a href="artigos.html" class="text-vatican-gold font-bold transition text-sm uppercase tracking-wide flex items-center gap-2">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar aos Artigos
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="index.html" class="block px-4 py-3 rounded-lg font-semibold text-slate-700 hover:bg-slate-50">Home</a>
+                <a href="artigos.html" class="block px-4 py-3 rounded-lg font-bold text-vatican-gold bg-slate-50">Voltar aos Artigos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TELA DE CARREGAMENTO -->
+    <div id="loading" class="fixed inset-0 bg-paper z-40 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-vatican-gold mx-auto mb-4"></div>
+            <p class="text-slate-500 animate-pulse font-medium">Carregando o artigo...</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO DO ARTIGO -->
+    <main id="content-area" class="hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-20 flex-grow">
+        
+        <article class="bg-white p-6 md:p-12 rounded-xl shadow-xl border border-slate-100">
+            
+            <!-- Cabeçalho (Título, Data, Autor) -->
+            <header class="mb-10 text-center border-b border-slate-100 pb-10">
+                <div class="flex items-center justify-center gap-2 text-xs md:text-sm text-vatican-gold font-bold tracking-widest uppercase mb-4">
+                    <span id="art-categoria" class="bg-vatican-gold/10 px-3 py-1 rounded-full">Artigo</span>
+                    <span class="text-slate-300">•</span>
+                    <span id="art-data">...</span>
+                </div>
+                
+                <h1 id="art-titulo" class="text-3xl md:text-5xl font-serif font-bold text-deep-blue leading-tight mb-6">
+                    <!-- Título será inserido aqui via JS -->
+                </h1>
+                
+                <div class="flex items-center justify-center gap-3 text-slate-500 text-sm">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+                        <i data-lucide="user" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block text-xs uppercase tracking-wider text-slate-400">Escrito por</span>
+                        <strong id="art-autor" class="text-slate-700">Catequista</strong>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Imagem Principal (Capa) -->
+            <figure id="art-imagem-container" class="mb-12 relative rounded-xl overflow-hidden shadow-lg group hidden">
+                <div class="absolute inset-0 bg-deep-blue/5 group-hover:bg-transparent transition duration-500"></div>
+                <img id="art-imagem" src="" alt="" class="w-full h-auto object-cover max-h-[500px]">
+            </figure>
+
+            <!-- Onde o texto do WordPress será injetado -->
+            <div id="art-conteudo" class="wp-content">
+                <!-- O HTML do post entra aqui -->
+            </div>
+
+            <!-- Navegação Inferior -->
+            <div class="mt-16 pt-8 border-t border-slate-200 flex justify-between items-center">
+                <a href="artigos.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-vatican-gold font-medium transition group">
+                    <div class="p-2 rounded-full bg-slate-50 group-hover:bg-vatican-gold/10 transition">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </div>
+                    Voltar para a lista
+                </a>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-sm text-slate-400 hover:text-deep-blue transition flex items-center gap-1">
+                    Topo <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
+            &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+        
+        // Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) navbar.classList.add('shadow-md');
+            else navbar.classList.remove('shadow-md');
+        });
+
+        // ==================================================================
+        // LÓGICA DE CARREGAMENTO (CONECTADA AO WORDPRESS)
+        // ==================================================================
+        
+        // URL Base da API do seu site
+        const WP_API_BASE = 'https://public-api.wordpress.com/wp/v2/sites/catequistadehipona.wordpress.com/posts';
+
+        async function loadSingleArticle() {
+            // 1. Pega o ID da URL (ex: artigo.html?id=123)
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            // Se não tiver ID, redireciona para a lista
+            if (!articleId) {
+                window.location.href = 'artigos.html';
+                return;
+            }
+
+            try {
+                // 2. Busca o artigo específico na API do WordPress
+                const response = await fetch(`${WP_API_BASE}/${articleId}?_embed`);
+                
+                if (!response.ok) {
+                    throw new Error('Artigo não encontrado ou erro na conexão.');
+                }
+
+                const post = await response.json();
+
+                // 3. Preenche os dados na página
+                
+                // Título (decodificando caracteres HTML especiais se houver)
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = post.title.rendered;
+                const decodedTitle = tempDiv.textContent;
+                
+                document.title = `${decodedTitle} | Catequista de Hipona`;
+                document.getElementById('art-titulo').innerHTML = post.title.rendered;
+                
+                // Data
+                const date = new Date(post.date).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById('art-data').textContent = date;
+                
+                // Autor (Tenta pegar, senão usa padrão)
+                const author = post._embedded?.author?.[0]?.name || 'Catequista';
+                document.getElementById('art-autor').textContent = author;
+
+                // Categoria
+                let category = 'Artigo';
+                if (post._embedded?.['wp:term']) {
+                    const cats = post._embedded['wp:term'].flat().find(t => t.taxonomy === 'category');
+                    if (cats) category = cats.name;
+                }
+                document.getElementById('art-categoria').textContent = category;
+
+                // Imagem Destacada
+                const image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                if (image) {
+                    const imgEl = document.getElementById('art-imagem');
+                    imgEl.src = image;
+                    imgEl.alt = decodedTitle;
+                    // Mostra o container da imagem (estava hidden)
+                    document.getElementById('art-imagem-container').classList.remove('hidden');
+                }
+
+                // Conteúdo Principal (O HTML que vem do WordPress)
+                document.getElementById('art-conteudo').innerHTML = post.content.rendered;
+
+                // 4. Finalização: Esconde Loading e Mostra Conteúdo
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('content-area').classList.remove('hidden');
+                
+                // Re-inicializa ícones caso o conteúdo tenha algum
+                lucide.createIcons();
+
+            } catch (error) {
+                console.error("Erro:", error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="text-center text-red-500 p-4">
+                        <i data-lucide="alert-circle" class="w-12 h-12 mx-auto mb-2"></i>
+                        <p class="font-bold text-lg">Não foi possível carregar este artigo.</p>
+                        <p class="text-sm mt-2">Talvez ele tenha sido removido ou o link esteja incorreto.</p>
+                        <a href="artigos.html" class="inline-block mt-6 px-6 py-2 bg-vatican-gold text-white rounded-full font-bold hover:bg-yellow-600 transition">
+                            Voltar para Lista de Artigos
+                        </a>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        // Executa quando a página carrega
+        document.addEventListener('DOMContentLoaded', loadSingleArticle);
+    </script>
+</body>
+</html>
