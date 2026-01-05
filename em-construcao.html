@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Em Construção | Catequista de Hipona</title>
+    <title>Em Breve | Catequista de Hipona</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,10 +34,18 @@
             }
         }
     </script>
+    <style>
+        .bg-construction {
+            /* Imagem de fundo: Interior de uma catedral em construção ou vitral */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1548544149-4835e62ee5b3?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white flex flex-col min-h-screen">
 
-    <!-- NAV BAR -->
+    <!-- NAV BAR (Idêntica ao Index) -->
     <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -51,45 +59,32 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html"
-                        class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
-
+                    <a href="index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
                     <div class="relative group">
-                        <button
-                            class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
+                        <button class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
                             Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
                         </button>
-                        <div
-                            class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
-                            <a href="catequese/introducao/introducao.html"
-                                class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
-                            <a href="catequese/credo/credo.html"
-                                class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O
-                                Credo</a>
-                            <a href="em-construcao.html"
-                                class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
-                            <a href="em-construcao.html"
-                                class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
-                            <a href="em-construcao.html"
-                                class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="catequese/introducao/introducao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
+                            <a href="catequese/credo/credo.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
+                            <a href="em-construcao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
+                            <a href="em-construcao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
+                            <a href="em-construcao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
                         </div>
                     </div>
 
-                    <a href="em-construcao.html"
-                        class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
-                    <a href="artigos.html"
-                        class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
-
-                    <a href="doe-aqui.html"
-                        class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <a href="em-construcao.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="artigos.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
+                    
+                    <a href="doe-aqui.html" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                         Doe Aqui
                     </a>
                 </div>
 
                 <!-- Mobile Header Icons -->
                 <div class="md:hidden flex items-center gap-2">
-                    <button id="mobile-menu-btn"
-                        class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
                         <i data-lucide="menu" class="h-7 w-7"></i>
                     </button>
                 </div>
@@ -97,42 +92,28 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
             <div class="px-4 pt-4 pb-6 space-y-2">
-                <a href="index.html"
-                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
-
+                <a href="index.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                
                 <div>
-                    <button id="mobile-catequese-btn"
-                        class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition group">
+                    <button id="mobile-catequese-btn" class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition group">
                         Catequese
-                        <i data-lucide="chevron-down" id="mobile-catequese-icon"
-                            class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
+                        <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
                     </button>
-                    <div id="mobile-catequese-menu"
-                        class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
-                        <a href="catequese/introducao/introducao.html"
-                            class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
-                        <a href="catequese/credo/credo.html"
-                            class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O
-                            Credo</a>
-                        <a href="em-construcao.html"
-                            class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
-                        <a href="em-construcao.html"
-                            class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
-                        <a href="em-construcao.html"
-                            class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Oração</a>
+                    <div id="mobile-catequese-menu" class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
+                        <a href="catequese/introducao/introducao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
+                        <a href="catequese/credo/credo.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
+                        <a href="em-construcao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
+                        <a href="em-construcao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
+                        <a href="em-construcao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Oração</a>
                     </div>
                 </div>
 
-                <a href="em-construcao.html"
-                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
-                <a href="artigos.html"
-                    class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
+                <a href="em-construcao.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="artigos.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
                 <div class="pt-4 mt-2 border-t border-gray-100">
-                    <a href="doe-aqui.html"
-                        class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
+                    <a href="doe-aqui.html" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
                         Doe Aqui
                     </a>
                 </div>
@@ -140,46 +121,37 @@
         </div>
     </nav>
 
-
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="flex-grow flex items-center justify-center relative py-20 px-4">
-        <!-- Elementos de fundo -->
-        <div class="absolute inset-0 bg-slate-50 z-0">
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-vatican-gold/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="text-center relative z-10 max-w-2xl mx-auto">
+    <main class="flex-grow flex items-center justify-center relative bg-construction">
+        
+        <div class="text-center relative z-10 max-w-3xl mx-auto px-6 py-20 bg-deep-blue/80 backdrop-blur-sm rounded-xl border border-white/10 shadow-2xl">
             
-            <!-- Ícone Animado -->
-            <div class="inline-flex items-center justify-center p-6 bg-white rounded-full shadow-xl mb-8 animate-bounce">
-                <i data-lucide="hammer" class="w-12 h-12 text-vatican-gold"></i>
+            <div class="mb-6 flex justify-center">
+                <i data-lucide="hourglass" class="w-16 h-16 text-vatican-gold"></i>
             </div>
 
-            <h1 class="text-4xl md:text-5xl font-serif font-bold text-deep-blue mb-6">
-                Estamos Construindo algo Sagrado
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4 leading-tight">
+                Em Breve
             </h1>
             
-            <p class="text-lg text-slate-600 leading-relaxed mb-10">
-                Esta seção do site ainda está sendo preparada com o cuidado teológico e catequético que você merece. 
-                <br class="hidden md:block">
-                Estamos trabalhando para trazer um conteúdo profundo e fiel ao Magistério.
+            <div class="h-1 w-24 bg-vatican-gold mx-auto mb-8 rounded-full"></div>
+
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 font-light">
+                Esta seção do <span class="text-white font-semibold">Catequista de Hipona</span> está sendo edificada com o cuidado e a profundidade que a doutrina católica exige. <br class="hidden md:block">Estamos preparando um conteúdo sólido para alimentar a sua fé.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="index.html" class="px-8 py-3 bg-deep-blue text-white rounded-lg font-bold hover:bg-slate-800 transition shadow-lg w-full sm:w-auto">
-                    Voltar para o Início
+                <a href="index.html" class="w-full sm:w-auto px-8 py-3 bg-vatican-gold text-white rounded-lg font-bold hover:bg-yellow-600 transition shadow-lg flex items-center justify-center gap-2">
+                    <i data-lucide="home" class="w-4 h-4"></i> Voltar ao Início
                 </a>
-                <a href="artigos.html" class="px-8 py-3 bg-white border-2 border-vatican-gold text-vatican-gold rounded-lg font-bold hover:bg-vatican-gold hover:text-white transition w-full sm:w-auto">
-                    Ler nossos Artigos
+                <a href="artigos.html" class="w-full sm:w-auto px-8 py-3 bg-white/10 border border-white/20 text-white rounded-lg font-semibold hover:bg-white hover:text-deep-blue transition flex items-center justify-center gap-2">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Ler Artigos
                 </a>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-slate-200">
-                <p class="text-sm text-slate-400 italic">
-                    "A paciência é a companheira da sabedoria." — Santo Agostinho
-                </p>
-            </div>
+            <p class="mt-12 text-sm text-gray-500 italic">
+                "A paciência é a companheira da sabedoria." – Santo Agostinho
+            </p>
         </div>
     </main>
 
@@ -191,15 +163,42 @@
     </footer>
 
     <script>
-        lucide.createIcons();
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if(btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-        
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) navbar.classList.add('shadow-md');
-            else navbar.classList.remove('shadow-md');
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Menu Mobile
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+
+            // Submenu Mobile
+            const mobileCatequeseBtn = document.getElementById('mobile-catequese-btn');
+            const mobileCatequeseMenu = document.getElementById('mobile-catequese-menu');
+            const mobileCatequeseIcon = document.getElementById('mobile-catequese-icon');
+
+            if (mobileCatequeseBtn && mobileCatequeseMenu && mobileCatequeseIcon) {
+                mobileCatequeseBtn.addEventListener('click', () => {
+                    mobileCatequeseMenu.classList.toggle('hidden');
+                    mobileCatequeseIcon.classList.toggle('rotate-180');
+                });
+            }
+
+            // Scroll Navbar
+            const navbar = document.getElementById('navbar');
+            if(navbar){
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('shadow-md');
+                    } else {
+                        navbar.classList.remove('shadow-md');
+                    }
+                });
+            }
         });
     </script>
 </body>
