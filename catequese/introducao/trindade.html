@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Santíssima Trindade | Catequista de Hipona</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vatican-gold': '#C5A059',
+                        'vatican-dark': '#1a1a2e',
+                        'deep-blue': '#0f172a',
+                        'paper': '#f8f5f2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-slate-800 font-sans antialiased selection:bg-vatican-gold selection:text-white">
+
+    <!-- NAV BAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="church" class="text-vatican-gold h-7 w-7 md:h-8 md:w-8"></i>
+                    <a href="../index.html" class="font-serif font-bold text-lg md:text-xl tracking-wide text-deep-blue">
+                        CATEQUISTA DE <span class="text-vatican-gold">HIPONA</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="../index.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">
+                            Catequese <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left border-t-2 border-vatican-gold">
+                            <a href="introducao.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Introdução</a>
+                            <a href="o-credo.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">O Credo</a>
+                            <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Sacramentos</a>
+                            <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold border-b border-gray-100 last:border-0">Mandamentos</a>
+                            <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-vatican-gold">Oração</a>
+                        </div>
+                    </div>
+
+                    <a href="../em-construcao-nova.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">História</a>
+                    <a href="../artigos.html" class="text-slate-600 hover:text-vatican-gold font-medium transition text-sm uppercase tracking-wide">Artigos</a>
+                    
+                    <a href="../doe-aqui.html" class="px-6 py-2.5 rounded-full bg-vatican-gold text-white text-sm font-bold hover:bg-yellow-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Doe Aqui
+                    </a>
+                </div>
+
+                <!-- Mobile Header Icons -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 hover:text-deep-blue hover:bg-slate-100 focus:outline-none transition">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl overflow-y-auto max-h-[80vh]">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="../index.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Home</a>
+                
+                <div>
+                    <button id="mobile-catequese-btn" class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition group">
+                        Catequese
+                        <i data-lucide="chevron-down" id="mobile-catequese-icon" class="h-5 w-5 text-slate-400 group-hover:text-vatican-gold transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-catequese-menu" class="hidden pl-2 space-y-1 bg-slate-50 rounded-lg mt-1 border-l-2 border-slate-200 ml-4">
+                        <a href="introducao.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Introdução</a>
+                        <a href="o-credo.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">O Credo</a>
+                        <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Sacramentos</a>
+                        <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Mandamentos</a>
+                        <a href="../em-construcao-nova.html" class="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-vatican-gold rounded-md hover:bg-white transition">Oração</a>
+                    </div>
+                </div>
+
+                <a href="../em-construcao-nova.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">História</a>
+                <a href="../artigos.html" class="block px-4 py-3 rounded-lg text-base font-semibold text-slate-700 hover:text-vatican-gold hover:bg-slate-50 transition">Artigos</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="../doe-aqui.html" class="block w-full text-center px-4 py-3 rounded-lg bg-vatican-gold text-white font-bold hover:bg-yellow-600 transition shadow-sm">
+                        Doe Aqui
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER INTERNO -->
+    <header class="relative py-24 md:py-32 bg-deep-blue flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-vatican-gold/20 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <!-- Breadcrumb -->
+            <div class="flex items-center justify-center gap-2 text-xs md:text-sm text-vatican-gold font-bold tracking-widest uppercase mb-4 animate-fade-in">
+                <a href="introducao.html" class="hover:underline opacity-70 hover:opacity-100">Introdução</a>
+                <span>/</span>
+                <span>Capítulo 5</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight text-shadow">
+                A Santíssima Trindade
+            </h1>
+            <p class="text-gray-300 text-lg mt-4 font-light italic">"O Mistério de um Deus que não é Solitário"</p>
+            <div class="h-1 w-16 bg-vatican-gold mx-auto mt-6 rounded"></div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 -mt-10 relative z-20">
+        <article class="bg-white p-6 md:p-12 rounded-xl shadow-xl border border-slate-100">
+            
+            <!-- Imagem de Destaque -->
+            <figure class="mb-10 relative group">
+                <div class="absolute inset-0 bg-vatican-gold transform translate-x-2 translate-y-2 rounded-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <!-- Ícone da Trindade de Andrei Rublev -->
+                <img class="relative z-10 rounded-lg w-full object-cover h-64 md:h-[450px] shadow-md transition duration-700" 
+                     src="trindade.jpg"
+                     alt="Adoração da Santíssima Trindade, por Albrecht Dürer, no Kunsthistorisches Museum.">
+                <figcaption class="text-center text-slate-400 text-xs mt-3 italic font-serif">
+                    Adoração da Santíssima Trindade, por Albrecht Dürer, no Kunsthistorisches Museum.
+                </figcaption>
+            </figure>
+
+            <!-- Texto do Artigo -->
+            <div class="prose prose-lg prose-slate max-w-none font-light leading-relaxed text-slate-700">
+                
+                <blockquote class="not-italic my-8 pl-6 border-l-4 border-vatican-gold bg-paper py-4 pr-4 rounded-r-lg shadow-sm">
+                    <p class="font-serif text-xl md:text-2xl text-deep-blue italic mb-2">
+                        "Ide, pois, fazei discípulos de todas as nações, batizando-os em nome do Pai, do Filho e do Espírito Santo."
+                    </p>
+                    <cite class="text-sm font-bold text-vatican-gold uppercase tracking-wide not-italic">— Mateus 28, 19</cite>
+                </blockquote>
+
+                <p>
+                    <span class="text-vatican-gold font-bold text-xl block mb-2">Amigos, a paz!</span>
+                    Antes de prosseguirmos no Credo, precisamos fazer uma pausa reverente diante do maior de todos os mistérios. Se perguntarmos a um judeu ou a um muçulmano quem é Deus, eles dirão: "Ele é o Único".
+                </p>
+                <p>
+                    Nós, católicos, dizemos o mesmo, mas acrescentamos uma novidade explosiva trazida por Jesus: Deus é Único, mas não é solitário.
+                </p>
+                <div class="bg-deep-blue text-white p-6 rounded-lg my-6 shadow-lg text-center">
+                    <p class="font-serif italic text-lg m-0">
+                        "Deus é uma comunhão eterna de Amor. Ele é Trindade."
+                    </p>
+                </div>
+                <p>
+                    Este é o mistério central da nossa fé. Todas as outras verdades (a Encarnação, os Sacramentos, a Igreja) derivam dele. Vamos tentar balbuciar algo sobre essa grandeza, guiados pelos nossos mestres.
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    1. A Matemática de Deus: Um e Três
+                </h3>
+
+                <p>
+                    A primeira coisa que precisamos afirmar é o monoteísmo. Não cremos em três deuses. Cremos em um só Deus.
+                    No entanto, a fé católica utiliza dois termos filosóficos gregos para explicar como esse Deus Único se relaciona internamente:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                        <strong class="text-deep-blue block text-lg mb-2 border-b border-vatican-gold/30 pb-2">Substância (ou Natureza)</strong>
+                        <p class="text-sm text-slate-600 mb-2">Responde à pergunta: <strong>"O que é?"</strong></p>
+                        <p class="text-sm text-slate-600">Há apenas uma substância divina. O Pai é Deus, o Filho é Deus, o Espírito é Deus. Eles têm o mesmo poder, a mesma eternidade, a mesma glória.</p>
+                    </div>
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                        <strong class="text-deep-blue block text-lg mb-2 border-b border-vatican-gold/30 pb-2">Pessoa (Hipóstase)</strong>
+                        <p class="text-sm text-slate-600 mb-2">Responde à pergunta: <strong>"Quem é?"</strong></p>
+                        <p class="text-sm text-slate-600">Há três pessoas distintas. O Pai não é o Filho, e o Espírito não é o Pai. Eles são distintos, mas inseparáveis.</p>
+                    </div>
+                </div>
+
+                <p>
+                    O Catecismo resume: <em>"A Trindade é uma. Não confessamos três deuses, mas um só Deus em três pessoas: a Trindade consubstancial"</em> (CIC, n. 253).
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    2. Quem Revelou isso?
+                </h3>
+
+                <p>
+                    A razão humana, sozinha, jamais chegaria a essa conclusão. Olhando para a natureza, sabemos que Deus existe e é poderoso (como viu Aristóteles). Mas saber que Ele é Pai, Filho e Espírito Santo exigiu que Ele mesmo nos contasse.
+                </p>
+                <p>
+                    Foi Jesus quem nos revelou a intimidade de Deus.
+                </p>
+                <ul class="list-disc pl-6 space-y-2 marker:text-vatican-gold">
+                    <li>No <strong>Batismo no Jordão</strong>, o céu se abriu: o Pai falou, o Filho estava na água e o Espírito desceu como pomba.</li>
+                    <li>Na <strong>despedida</strong>, Jesus mandou batizar "em nome" (singular) "do Pai, do Filho e do Espírito Santo" (plural).</li>
+                </ul>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    3. A Explicação de Santo Agostinho (O Amor)
+                </h3>
+
+                <p>
+                    Como entender três que são um? Santo Agostinho, em sua obra monumental <em>De Trinitate</em>, buscou uma imagem na própria alma humana, que foi feita à semelhança de Deus.
+                </p>
+                <p>
+                    Ele diz que, onde há amor verdadeiro, tem que haver três realidades:
+                </p>
+
+                <div class="flex flex-col md:flex-row justify-center gap-4 my-8 not-prose text-center">
+                    <div class="flex-1 p-4 bg-white border border-vatican-gold rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                        <div class="text-vatican-gold mb-2"><i data-lucide="heart" class="w-8 h-8 mx-auto"></i></div>
+                        <h4 class="font-bold text-deep-blue">O Amante</h4>
+                        <p class="text-xs text-slate-500 mt-1">Aquele que ama</p>
+                        <p class="font-serif text-lg text-vatican-gold mt-2">O Pai</p>
+                    </div>
+                    <div class="flex items-center justify-center text-slate-300">
+                        <i data-lucide="arrow-right" class="w-6 h-6 hidden md:block"></i>
+                        <i data-lucide="arrow-down" class="w-6 h-6 md:hidden"></i>
+                    </div>
+                    <div class="flex-1 p-4 bg-white border border-vatican-gold rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                        <div class="text-vatican-gold mb-2"><i data-lucide="heart-handshake" class="w-8 h-8 mx-auto"></i></div>
+                        <h4 class="font-bold text-deep-blue">O Amor</h4>
+                        <p class="text-xs text-slate-500 mt-1">O laço que une</p>
+                        <p class="font-serif text-lg text-vatican-gold mt-2">O Espírito Santo</p>
+                    </div>
+                    <div class="flex items-center justify-center text-slate-300">
+                        <i data-lucide="arrow-right" class="w-6 h-6 hidden md:block"></i>
+                        <i data-lucide="arrow-down" class="w-6 h-6 md:hidden"></i>
+                    </div>
+                    <div class="flex-1 p-4 bg-white border border-vatican-gold rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                        <div class="text-vatican-gold mb-2"><i data-lucide="user-check" class="w-8 h-8 mx-auto"></i></div>
+                        <h4 class="font-bold text-deep-blue">O Amado</h4>
+                        <p class="text-xs text-slate-500 mt-1">Aquele que recebe</p>
+                        <p class="font-serif text-lg text-vatican-gold mt-2">O Filho</p>
+                    </div>
+                </div>
+
+                <p>
+                    Deus é tão perfeito que o Seu Amor não é apenas um sentimento, mas uma Pessoa: o Espírito Santo. Portanto, Deus não precisa criar o mundo para ter alguém para amar. Ele já é Amor em si mesmo, num movimento eterno de doação e recepção.
+                </p>
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mt-12 mb-6 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-vatican-gold block"></span>
+                    4. As Relações de Origem
+                </h3>
+                <span class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-4 block">São Tomás de Aquino</span>
+
+                <p>
+                    São Tomás de Aquino aprofunda dizendo que o que distingue as Pessoas são apenas as suas <strong>relações de origem</strong>:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 marker:text-vatican-gold">
+                    <li><strong>O Pai</strong> não vem de ninguém (é a Fonte).</li>
+                    <li><strong>O Filho</strong> é gerado pelo Pai eternamente (é o Verbo).</li>
+                    <li><strong>O Espírito Santo</strong> procede do Pai e do Filho (é o Dom).</li>
+                </ul>
+                <p>
+                    Fora essas relações, tudo nEles é um. Eles têm uma só vontade, uma só inteligência e uma só ação. Quando Deus cria o mundo, é a Trindade inteira que cria. Quando Deus nos perdoa, é a Trindade inteira que age.
+                </p>
+
+                <hr class="my-8 border-slate-200">
+
+                <h3 class="text-2xl font-serif font-bold text-deep-blue mb-4">Conclusão: Morada da Trindade</h3>
+                <p>
+                    Por que isso importa para a minha vida prática? Porque não fomos criados para assistir à Trindade de longe, mas para morar dentro dEla.
+                </p>
+                <p>
+                    Jesus prometeu: <em>"Se alguém me ama, guardará a minha palavra, e o meu Pai o amará, e viremos a ele, e faremos nele a nossa morada"</em> (Jo 14, 23).
+                </p>
+                <p>
+                    Pelo Batismo, a sua alma se torna um pequeno céu onde o Pai, o Filho e o Espírito Santo habitam e conversam. Viver em graça é participar, desde já, dessa família divina.
+                </p>
+                <p class="text-lg font-medium text-slate-700 mt-6">
+                    Encerramos aqui nossa "Parte 0". Agora que temos os alicerces (Fé e Revelação), as ferramentas (Escritura, Tradição e Magistério) e mistério da Satíssima Trindade, estamos prontos para começar a construir a nossa catedral.
+                </p>
+            </div>
+
+            <!-- NAVEGAÇÃO ENTRE ARTIGOS -->
+            <div class="mt-16 border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between gap-4">
+                <a href="o-sagrado-magisterio.html" class="group flex items-center gap-3 text-slate-500 hover:text-vatican-gold transition text-right md:text-left">
+                    <div class="p-2 rounded-full bg-slate-100 group-hover:bg-vatican-gold/10 transition">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider font-bold opacity-70">Anterior</span>
+                        <span class="font-serif font-bold text-lg">O Sagrado Magistério</span>
+                    </div>
+                </a>
+
+                <a href="../credo/credo.html" class="group flex items-center gap-3 text-slate-500 hover:text-vatican-gold transition justify-end text-left md:text-right">
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider font-bold opacity-70">Próximo</span>
+                        <span class="font-serif font-bold text-lg">O Credo (Parte 1)</span>
+                    </div>
+                    <div class="p-2 rounded-full bg-slate-100 group-hover:bg-vatican-gold/10 transition">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </div>
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-xs">
+                &copy; 2025 Catequista de Hipona. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        const mobileCatequeseBtn = document.getElementById('mobile-catequese-btn');
+        const mobileCatequeseMenu = document.getElementById('mobile-catequese-menu');
+        const mobileCatequeseIcon = document.getElementById('mobile-catequese-icon');
+
+        if(mobileCatequeseBtn) {
+            mobileCatequeseBtn.addEventListener('click', () => {
+                mobileCatequeseMenu.classList.toggle('hidden');
+                mobileCatequeseIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
